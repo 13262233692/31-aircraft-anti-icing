@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/test/array_for_matrix.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildOfficial"
+		],
+		"name" : "array_for_matrix_4"
+	}
+}

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AEDF0BCE-027B-3B76-A36F-7F7569015313}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>geo_alignedbox</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\test\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\MacroAddFileDependencies.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\EigenSmokeTestList.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindBLAS.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindCHOLMOD.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindHWLOC.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindKLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindLAPACK.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindPASTIX.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSPQR.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSuperLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\MacroAddFileDependencies.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\EigenSmokeTestList.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindBLAS.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindCHOLMOD.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindHWLOC.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindKLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindLAPACK.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindPASTIX.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSPQR.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSuperLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\MacroAddFileDependencies.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\EigenSmokeTestList.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindBLAS.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindCHOLMOD.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindHWLOC.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindKLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindLAPACK.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindPASTIX.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSPQR.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSuperLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/test/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/test/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakePushCheckState.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCXXSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFortranFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckStructHasMember.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindBoost.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindQt4.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\MacroAddFileDependencies.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\EigenSmokeTestList.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindBLAS.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindCHOLMOD.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindHWLOC.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindKLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindLAPACK.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindPASTIX.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSPQR.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindSuperLU.cmake;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\cmake\FindUMFPACK.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\ZERO_CHECK.vcxproj">
+      <Project>{570197CB-EB12-3A1A-BEE0-8D652511DAAF}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_1.vcxproj">
+      <Project>{DA720BD2-5E9F-3292-B626-667A0F790AAE}</Project>
+      <Name>geo_alignedbox_1</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_10.vcxproj">
+      <Project>{97E87B12-C9E6-3833-9378-A85B184A90F9}</Project>
+      <Name>geo_alignedbox_10</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_11.vcxproj">
+      <Project>{C9C557BE-BB5F-3ECB-AD13-836E63F463E7}</Project>
+      <Name>geo_alignedbox_11</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_12.vcxproj">
+      <Project>{0E236002-9CF5-3DC9-8594-B5D78E98CD72}</Project>
+      <Name>geo_alignedbox_12</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_13.vcxproj">
+      <Project>{FE02CA33-544F-3C43-B30E-D53274F0AD58}</Project>
+      <Name>geo_alignedbox_13</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_14.vcxproj">
+      <Project>{6903B8E4-B6E8-37CF-9AEA-04D27C8580EC}</Project>
+      <Name>geo_alignedbox_14</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_2.vcxproj">
+      <Project>{EFE85FA7-BA80-367C-A1C1-7E135AB5EFD9}</Project>
+      <Name>geo_alignedbox_2</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_3.vcxproj">
+      <Project>{7EA8F300-56F7-3F6A-B9C4-8D2A953876AB}</Project>
+      <Name>geo_alignedbox_3</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_4.vcxproj">
+      <Project>{ABC9398D-EB97-32C0-B884-63E45116F316}</Project>
+      <Name>geo_alignedbox_4</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_5.vcxproj">
+      <Project>{0DB385CF-59C1-3022-B6EA-0C69F7A4F359}</Project>
+      <Name>geo_alignedbox_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_6.vcxproj">
+      <Project>{E2FC2F76-2D4A-3197-BA42-E6CD4591F015}</Project>
+      <Name>geo_alignedbox_6</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_7.vcxproj">
+      <Project>{43ED2059-B735-3812-A1E0-A7E2770D39FC}</Project>
+      <Name>geo_alignedbox_7</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_8.vcxproj">
+      <Project>{60531D2A-12FE-35A3-9774-2EFB0B903230}</Project>
+      <Name>geo_alignedbox_8</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\test\geo_alignedbox_9.vcxproj">
+      <Project>{18505A2A-8712-35F1-BA5B-A406FDD1A3B9}</Project>
+      <Name>geo_alignedbox_9</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

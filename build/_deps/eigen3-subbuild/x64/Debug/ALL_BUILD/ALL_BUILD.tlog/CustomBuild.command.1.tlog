@@ -1,0 +1,10 @@
+^D:\SOLO-11\31-AIRCRAFT-ANTI-ICING\BUILD\_DEPS\EIGEN3-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-subbuild -BD:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-subbuild --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

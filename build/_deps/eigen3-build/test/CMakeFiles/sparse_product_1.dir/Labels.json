@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/test/sparse_product.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildOfficial"
+		],
+		"name" : "sparse_product_1"
+	}
+}

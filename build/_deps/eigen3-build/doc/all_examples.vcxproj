@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{85B300F2-389A-330A-979F-790CEB76FFE6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>all_examples</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\Doxyfile.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_footer.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_header.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_layout.xml.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\Doxyfile.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_footer.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_header.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_layout.xml.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\Doxyfile.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_footer.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_header.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_layout.xml.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-src/doc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-file D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build/doc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\Doxyfile.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_footer.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_header.html.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\doc\eigendoxy_layout.xml.in;D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-src\unsupported\doc\eigendoxy_layout.xml.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\ZERO_CHECK.vcxproj">
+      <Project>{570197CB-EB12-3A1A-BEE0-8D652511DAAF}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\CustomizingEigen_Inheritance.vcxproj">
+      <Project>{0E6ACA14-AA4B-359A-898B-62F5D4430BEA}</Project>
+      <Name>CustomizingEigen_Inheritance</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Cwise_erf.vcxproj">
+      <Project>{0F1CBA67-3097-375C-82CF-520EA868F6EC}</Project>
+      <Name>Cwise_erf</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Cwise_erfc.vcxproj">
+      <Project>{734E967D-84E6-3DC7-AFF6-CCE98A47C2CA}</Project>
+      <Name>Cwise_erfc</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Cwise_lgamma.vcxproj">
+      <Project>{8E2CC3CB-931F-3BC3-81AB-2C432D6BDFAA}</Project>
+      <Name>Cwise_lgamma</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\DenseBase_middleCols_int.vcxproj">
+      <Project>{2D5E02FA-B5E4-3605-9BF3-7E04AE381D67}</Project>
+      <Name>DenseBase_middleCols_int</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\DenseBase_middleRows_int.vcxproj">
+      <Project>{8BE81301-2BE1-3FBC-8E51-7A1CACA3E753}</Project>
+      <Name>DenseBase_middleRows_int</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\DenseBase_template_int_middleCols.vcxproj">
+      <Project>{05F767F8-24B0-328C-A6EB-386D53C2D9FC}</Project>
+      <Name>DenseBase_template_int_middleCols</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\DenseBase_template_int_middleRows.vcxproj">
+      <Project>{B6A7F987-4432-3104-AC01-A39D4EAB2239}</Project>
+      <Name>DenseBase_template_int_middleRows</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\QuickStart_example.vcxproj">
+      <Project>{0A43AB2E-C2E6-398D-89C1-3EBE83965AC2}</Project>
+      <Name>QuickStart_example</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\QuickStart_example2_dynamic.vcxproj">
+      <Project>{5396E445-80FD-36F7-9904-A0D7E71BB732}</Project>
+      <Name>QuickStart_example2_dynamic</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\QuickStart_example2_fixed.vcxproj">
+      <Project>{27BDD5DC-7ADD-337B-AE34-C733E1A2322F}</Project>
+      <Name>QuickStart_example2_fixed</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TemplateKeyword_flexible.vcxproj">
+      <Project>{BD1ECF6D-C3A9-3740-8FD5-6B06074A51BB}</Project>
+      <Name>TemplateKeyword_flexible</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TemplateKeyword_simple.vcxproj">
+      <Project>{E206B614-81C1-3125-9D05-1CA20FAC8DE5}</Project>
+      <Name>TemplateKeyword_simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialInplaceLU.vcxproj">
+      <Project>{6C7D28D9-1469-3BF5-A8DC-FE9CEDCFC975}</Project>
+      <Name>TutorialInplaceLU</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgComputeTwice.vcxproj">
+      <Project>{5F761779-C8C3-35E7-A3CF-8DC2DA30E5D8}</Project>
+      <Name>TutorialLinAlgComputeTwice</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgExComputeSolveError.vcxproj">
+      <Project>{11E1A649-21AD-3CB2-91F8-0198A83DA7D6}</Project>
+      <Name>TutorialLinAlgExComputeSolveError</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgExSolveColPivHouseholderQR.vcxproj">
+      <Project>{A6BC7D7E-8D38-372B-AFD8-97944B5ABF9C}</Project>
+      <Name>TutorialLinAlgExSolveColPivHouseholderQR</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgExSolveLDLT.vcxproj">
+      <Project>{2950B9CC-799F-3784-BFF0-723FF00CAB54}</Project>
+      <Name>TutorialLinAlgExSolveLDLT</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgInverseDeterminant.vcxproj">
+      <Project>{10DD5F53-4D75-36B3-A222-D92432226745}</Project>
+      <Name>TutorialLinAlgInverseDeterminant</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgRankRevealing.vcxproj">
+      <Project>{1061CC41-8B6A-325E-94E0-48DB4C603028}</Project>
+      <Name>TutorialLinAlgRankRevealing</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgSVDSolve.vcxproj">
+      <Project>{6C4373F7-F6F8-301A-88EE-B0CF015CF5DC}</Project>
+      <Name>TutorialLinAlgSVDSolve</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgSelfAdjointEigenSolver.vcxproj">
+      <Project>{630DF802-59A1-394B-AC2F-23092496798C}</Project>
+      <Name>TutorialLinAlgSelfAdjointEigenSolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\TutorialLinAlgSetThreshold.vcxproj">
+      <Project>{5BFC0DD7-81B7-3634-92F9-44E57E57AF00}</Project>
+      <Name>TutorialLinAlgSetThreshold</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ArrayClass_accessors.vcxproj">
+      <Project>{0318C6B1-9B08-3AE0-9594-596371CECA43}</Project>
+      <Name>Tutorial_ArrayClass_accessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ArrayClass_addition.vcxproj">
+      <Project>{D265AE33-07B4-37C6-9374-422AF2A863AA}</Project>
+      <Name>Tutorial_ArrayClass_addition</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ArrayClass_cwise_other.vcxproj">
+      <Project>{97FD8C75-7E6B-3BA1-B2E4-944AB4B57963}</Project>
+      <Name>Tutorial_ArrayClass_cwise_other</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ArrayClass_interop.vcxproj">
+      <Project>{8F7D1FE8-37B0-3804-A1B8-B14076CE1808}</Project>
+      <Name>Tutorial_ArrayClass_interop</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ArrayClass_interop_matrix.vcxproj">
+      <Project>{1012A2BD-0C37-3126-8DE0-4A738C0705F9}</Project>
+      <Name>Tutorial_ArrayClass_interop_matrix</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ArrayClass_mult.vcxproj">
+      <Project>{40ED3A54-85FD-354E-8623-0AF9D8305669}</Project>
+      <Name>Tutorial_ArrayClass_mult</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_BlockOperations_block_assignment.vcxproj">
+      <Project>{B6E207F0-5A3D-3E9F-BA45-2EE350857EF4}</Project>
+      <Name>Tutorial_BlockOperations_block_assignment</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_BlockOperations_colrow.vcxproj">
+      <Project>{95D0DE70-5D8D-3E3F-911E-A3FD1BFBDC5A}</Project>
+      <Name>Tutorial_BlockOperations_colrow</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_BlockOperations_corner.vcxproj">
+      <Project>{C7F93937-5159-3563-A00C-F1E603DBA068}</Project>
+      <Name>Tutorial_BlockOperations_corner</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_BlockOperations_print_block.vcxproj">
+      <Project>{37EE69D6-29B0-30CE-857E-4A0DB1FD0127}</Project>
+      <Name>Tutorial_BlockOperations_print_block</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_BlockOperations_vector.vcxproj">
+      <Project>{AB000AA1-88F2-354D-B6DA-DDCCA7D21598}</Project>
+      <Name>Tutorial_BlockOperations_vector</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_PartialLU_solve.vcxproj">
+      <Project>{A00EE408-7FD9-34F2-A11C-C905A21A77EB}</Project>
+      <Name>Tutorial_PartialLU_solve</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_broadcast_1nn.vcxproj">
+      <Project>{1B213128-866C-3F64-82EC-ECFA78449CFE}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_broadcast_1nn</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple.vcxproj">
+      <Project>{A66FE2C2-6F82-3165-B56F-0B7580BB75F8}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple_rowwise.vcxproj">
+      <Project>{098D1B19-4C7F-3AC9-A2FE-B84340BC52AA}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_broadcast_simple_rowwise</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_colwise.vcxproj">
+      <Project>{AE52C920-6C89-3746-839C-C844A3D3328A}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_colwise</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_maxnorm.vcxproj">
+      <Project>{D3B19940-EA14-3F9B-9AD2-15790B85E737}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_maxnorm</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_reductions_bool.vcxproj">
+      <Project>{47872229-0339-321D-ADC7-EB2C106CAACE}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_reductions_bool</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_reductions_norm.vcxproj">
+      <Project>{2E1D180C-EA22-359B-9E20-8D084C7C2AA6}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_reductions_norm</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_reductions_operatornorm.vcxproj">
+      <Project>{489625FC-7ACE-3F24-B08C-54A0B26C80B4}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_reductions_operatornorm</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_rowwise.vcxproj">
+      <Project>{4AF924DB-364D-36CE-9095-D2369F688CB2}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_rowwise</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_ReductionsVisitorsBroadcasting_visitors.vcxproj">
+      <Project>{FCEF7430-5CFC-3B45-8B1A-F38D86844D51}</Project>
+      <Name>Tutorial_ReductionsVisitorsBroadcasting_visitors</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_simple_example_dynamic_size.vcxproj">
+      <Project>{7994E8B7-E2F8-3A78-89D1-0DCECF481BD9}</Project>
+      <Name>Tutorial_simple_example_dynamic_size</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\Tutorial_simple_example_fixed_size.vcxproj">
+      <Project>{B9EAEF87-1D9A-328D-AE24-C77ABDE7EF21}</Project>
+      <Name>Tutorial_simple_example_fixed_size</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_Block.vcxproj">
+      <Project>{1222363B-5A4B-32A3-A101-8B08C4360652}</Project>
+      <Name>class_Block</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_CwiseBinaryOp.vcxproj">
+      <Project>{D27A63EA-1171-3E1D-B9B4-EEA0805F799F}</Project>
+      <Name>class_CwiseBinaryOp</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_CwiseUnaryOp.vcxproj">
+      <Project>{628CCD05-36E2-3EED-A91C-641296CF59EE}</Project>
+      <Name>class_CwiseUnaryOp</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_CwiseUnaryOp_ptrfun.vcxproj">
+      <Project>{B4E0EF9A-1F9D-3C8A-9DC0-AADEFDE6DE01}</Project>
+      <Name>class_CwiseUnaryOp_ptrfun</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_FixedBlock.vcxproj">
+      <Project>{BD2855E8-2448-3908-BF77-174916129861}</Project>
+      <Name>class_FixedBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_FixedReshaped.vcxproj">
+      <Project>{B50EEB76-CD57-37B8-8197-B55D74A4E7C2}</Project>
+      <Name>class_FixedReshaped</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_FixedVectorBlock.vcxproj">
+      <Project>{DDD63E66-0F55-3FE2-86CA-88E670192E83}</Project>
+      <Name>class_FixedVectorBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_Reshaped.vcxproj">
+      <Project>{9450ACFC-A2F8-375B-8816-BB4315903262}</Project>
+      <Name>class_Reshaped</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\class_VectorBlock.vcxproj">
+      <Project>{646D6780-F247-3E6A-B19C-DB5BA652F56B}</Project>
+      <Name>class_VectorBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\function_taking_eigenbase.vcxproj">
+      <Project>{04537F1B-4FEE-3C26-9EFF-9C751CE5AEFF}</Project>
+      <Name>function_taking_eigenbase</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\function_taking_ref.vcxproj">
+      <Project>{BD81F75B-66B6-398E-87CC-5F5EBCDDB603}</Project>
+      <Name>function_taking_ref</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\make_circulant.vcxproj">
+      <Project>{4F1CD530-BEAB-3BDF-805A-10DDAED46EFB}</Project>
+      <Name>make_circulant</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\make_circulant2.vcxproj">
+      <Project>{F3808B6D-7522-31B4-903C-9E61E7496A5A}</Project>
+      <Name>make_circulant2</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\matrixfree_cg.vcxproj">
+      <Project>{9404EA85-9829-3706-82CD-1D7EC00A70A3}</Project>
+      <Name>matrixfree_cg</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\nullary_indexing.vcxproj">
+      <Project>{D2723862-4B30-315F-83C3-AD384CB02123}</Project>
+      <Name>nullary_indexing</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_arithmetic_add_sub.vcxproj">
+      <Project>{00BC353A-8767-342C-86A9-DC074A85BDE4}</Project>
+      <Name>tut_arithmetic_add_sub</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_arithmetic_dot_cross.vcxproj">
+      <Project>{77049720-C970-31C8-A7C2-3D14CEA53E72}</Project>
+      <Name>tut_arithmetic_dot_cross</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_arithmetic_matrix_mul.vcxproj">
+      <Project>{6997C8FB-5D2E-3675-B5B9-A01196DE6694}</Project>
+      <Name>tut_arithmetic_matrix_mul</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_arithmetic_redux_basic.vcxproj">
+      <Project>{DC654EF1-AF61-337D-ABA3-F5D3C0B2B2A0}</Project>
+      <Name>tut_arithmetic_redux_basic</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_arithmetic_scalar_mul_div.vcxproj">
+      <Project>{31F197FD-14E8-3654-9B8F-4D9E57550267}</Project>
+      <Name>tut_arithmetic_scalar_mul_div</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_matrix_coefficient_accessors.vcxproj">
+      <Project>{5A97D2A7-B27E-3A8B-80D2-6B815E2DD859}</Project>
+      <Name>tut_matrix_coefficient_accessors</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_matrix_resize.vcxproj">
+      <Project>{E19CD6B6-3732-362B-97AB-0360C7E3946A}</Project>
+      <Name>tut_matrix_resize</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\SOLO-11\31-aircraft-anti-icing\build\_deps\eigen3-build\doc\examples\tut_matrix_resize_fixed_size.vcxproj">
+      <Project>{CE013E42-867E-31CF-99E4-A31007C557FA}</Project>
+      <Name>tut_matrix_resize_fixed_size</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

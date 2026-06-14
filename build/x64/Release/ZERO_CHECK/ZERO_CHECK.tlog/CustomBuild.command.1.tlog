@@ -1,0 +1,10 @@
+^D:\SOLO-11\31-AIRCRAFT-ANTI-ICING\BUILD\CMAKEFILES\F66005D6E6C06F631D11E5E1A4A323CD\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/SOLO-11/31-aircraft-anti-icing -BD:/SOLO-11/31-aircraft-anti-icing/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/SOLO-11/31-aircraft-anti-icing/build/AircraftAntiIcing.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
