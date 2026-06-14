@@ -25,7 +25,9 @@ struct AntiIcingSystemConfig {
 
 struct SolverDiagnostics {
     Scalar currentTime;
+    Scalar currentDt;
     Index timeStep;
+    Index subSteps;
     Scalar pipeResidual;
     Scalar solidResidual;
     Scalar couplingResidual;
@@ -35,6 +37,10 @@ struct SolverDiagnostics {
     Scalar maxPipeMach;
     Scalar energyImbalance;
     Scalar wallClockTime;
+    Index couplingIterations;
+    Scalar couplingRelaxation;
+    Index backtrackCount;
+    Scalar stepStatus;
 };
 
 class AntiIcingSolver {
@@ -63,6 +69,10 @@ private:
     void computeDiagnostics();
     void outputResults(Index step, Scalar time);
     Scalar adaptiveTimeStep();
+    bool validateSolution();
+    void restoreState();
+    void saveState();
+    Scalar getStabilityCriterion();
 
     AntiIcingSystemConfig config_;
     std::shared_ptr<fvm::PipeFlowSolver> pipeSolver_;
@@ -76,7 +86,15 @@ private:
     DiagnosticCallback diagCallback_;
 
     Scalar currentTime_;
+    Scalar currentDt_;
     Index currentStep_;
+    Index totalSubSteps_;
+    Scalar dtHistory_[5];
+    Index dtHistoryPtr_;
+
+    fvm::PipeFlowState savedPipeState_;
+    fem::FEMState savedSolidState_;
+    Scalar savedTime_;
 };
 
 std::shared_ptr<AntiIcingSolver> createAntiIcingSolver(const AntiIcingSystemConfig& config);

@@ -5,6 +5,7 @@
 #include "fem/heat_conduction_solver.h"
 #include "bc/boundary_conditions.h"
 #include <memory>
+#include <deque>
 
 namespace anti_icing {
 namespace coupling {
@@ -26,12 +27,47 @@ struct CouplingInterface {
     VectorX mappedSurfaceToPipeFlux;
 };
 
+enum class CouplingStatus {
+    CONVERGED,
+    STABLE,
+    RESIDUAL_GROWING,
+    DIVERGING,
+    INVALID,
+    BACKTRACKED
+};
+
 struct CouplingConfig {
     Scalar relaxationFactor;
     Index  maxIterations;
     Scalar tolerance;
     bool   useAitken;
     bool   enforceEnergyConservation;
+
+    Scalar minRelaxation;
+    Scalar maxRelaxation;
+    Scalar residualGrowthThreshold;
+    Scalar divergenceThreshold;
+    Scalar relaxationCutFactor;
+    Scalar relaxationRecoveryFactor;
+    Index  residualHistorySize;
+
+    Scalar tempMinPhysical;
+    Scalar tempMaxPhysical;
+    Scalar heatFluxMaxPhysical;
+
+    bool   enableBacktracking;
+    Index  maxBacktrackSteps;
+    Scalar backtrackFactor;
+
+    Scalar newtonDampingCoeff;
+    bool   enableNewtonDamping;
+};
+
+struct CouplingIterationRecord {
+    Scalar residual;
+    Scalar relaxationFactor;
+    Scalar energyImbalance;
+    CouplingStatus status;
 };
 
 class StaggeredCoupler {
@@ -58,9 +94,27 @@ public:
     const CouplingInterface& interface() const { return interface_; }
     Scalar residual() const { return residual_; }
     Index iterations() const { return iterations_; }
+    Scalar currentRelaxation() const { return currentRelaxation_; }
+    CouplingStatus status() const { return lastStatus_; }
+
+    const std::deque<CouplingIterationRecord>& history() const { return history_; }
 
 private:
-    void aitkenRelaxation(VectorX& field, const VectorX& newField, const VectorX& oldField);
+    CouplingStatus assessConvergenceStatus(Scalar currentResidual, Scalar prevResidual) const;
+
+    Scalar adaptiveRelaxationFactor(Scalar currentRelax, CouplingStatus status) const;
+
+    void aitkenRelaxation(VectorX& field, const VectorX& newField, const VectorX& oldField,
+                          Scalar relaxationOverride = -1.0);
+
+    bool validateAndClampFields();
+
+    void saveState();
+    bool restoreState();
+
+    void addNumericalDampingToStiffness(SparseMatrix& A, Scalar dampingCoeff);
+
+    void recordIteration(Scalar res, Scalar relax, Scalar imbalance, CouplingStatus s);
 
     std::shared_ptr<fvm::PipeFlowSolver> pipeSolver_;
     std::shared_ptr<fem::HeatConductionSolver> solidSolver_;
@@ -70,11 +124,21 @@ private:
     Scalar residual_;
     Index iterations_;
     Scalar aitkenFactor_;
+    Scalar currentRelaxation_;
+    CouplingStatus lastStatus_;
+
     VectorX prevSurfaceTemp_;
     VectorX prevPipeWallTemp_;
+    VectorX prevSurfaceFlux_;
+    VectorX prevPipeWallFlux_;
 
-    VectorX residualHistoryTemp_;
-    VectorX residualHistoryFlux_;
+    fvm::PipeFlowState savedPipeState_;
+    fem::FEMState savedSolidState_;
+    VectorX savedSurfaceTemp_;
+    VectorX savedPipeWallTemp_;
+
+    std::deque<CouplingIterationRecord> history_;
+    Index backtrackCount_;
 };
 
 std::shared_ptr<StaggeredCoupler> createStaggeredCoupler(

@@ -67,4 +67,47 @@ inline Scalar computeSpeedOfSound(Scalar T) {
     return std::sqrt(GAMMA_AIR * R_AIR * T);
 }
 
+inline bool isNaN(Scalar x) {
+    return std::isnan(x) || std::isinf(x);
+}
+
+inline Scalar clamp(Scalar x, Scalar lo, Scalar hi) {
+    return std::max(lo, std::min(hi, x));
+}
+
+inline Scalar smoothClamp(Scalar x, Scalar lo, Scalar hi, Scalar transitionWidth = 1.0) {
+    if (x <= lo - transitionWidth) return lo;
+    if (x >= hi + transitionWidth) return hi;
+    if (x >= lo && x <= hi) return x;
+    if (x < lo) {
+        Scalar t = (x - (lo - transitionWidth)) / transitionWidth;
+        return lo + transitionWidth * (t * t * (3.0 - 2.0 * t)) * 0.0;
+    } else {
+        Scalar t = (x - hi) / transitionWidth;
+        return hi + transitionWidth * (1.0 - t * t * (3.0 - 2.0 * t)) * 0.0;
+    }
+    return clamp(x, lo, hi);
+}
+
+inline bool isVectorValid(const VectorX& v) {
+    for (Index i = 0; i < v.size(); ++i) {
+        if (isNaN(v(i))) return false;
+    }
+    return true;
+}
+
+inline VectorX clampVector(const VectorX& v, Scalar lo, Scalar hi) {
+    VectorX result(v.size());
+    for (Index i = 0; i < v.size(); ++i) {
+        result(i) = clamp(v(i), lo, hi);
+    }
+    return result;
+}
+
+inline Scalar sigmoid(Scalar x, Scalar x0 = 0.0, Scalar width = 1.0) {
+    Scalar z = (x - x0) / width;
+    z = clamp(z, -50.0, 50.0);
+    return 1.0 / (1.0 + std::exp(-z));
+}
+
 }

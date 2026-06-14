@@ -15,6 +15,19 @@ struct FEMConfig {
     Index  maxIter;
     bool   useLumpedMass;
     bool   useParallel;
+
+    Scalar numericalDampingCoeff;
+    bool   enableNumericalDamping;
+
+    Scalar tempMinPhysical;
+    Scalar tempMaxPhysical;
+
+    Scalar freezeTransitionWidth;
+    Scalar freezingPointTemp;
+
+    Index  maxNewtonIter;
+    Scalar newtonTolerance;
+    bool   enableLineSearch;
 };
 
 struct FEMState {
