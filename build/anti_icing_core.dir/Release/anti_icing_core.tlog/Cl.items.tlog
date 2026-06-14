@@ -3,4 +3,5 @@ D:\SOLO-11\31-aircraft-anti-icing\src\common\grid.cpp;D:\SOLO-11\31-aircraft-ant
 D:\SOLO-11\31-aircraft-anti-icing\src\coupling\staggered_coupler.cpp;D:\SOLO-11\31-aircraft-anti-icing\build\anti_icing_core.dir\Release\staggered_coupler.obj
 D:\SOLO-11\31-aircraft-anti-icing\src\fem\heat_conduction_solver.cpp;D:\SOLO-11\31-aircraft-anti-icing\build\anti_icing_core.dir\Release\heat_conduction_solver.obj
 D:\SOLO-11\31-aircraft-anti-icing\src\fvm\pipe_flow_solver.cpp;D:\SOLO-11\31-aircraft-anti-icing\build\anti_icing_core.dir\Release\pipe_flow_solver.obj
+D:\SOLO-11\31-aircraft-anti-icing\src\levelset\level_set_solver.cpp;D:\SOLO-11\31-aircraft-anti-icing\build\anti_icing_core.dir\Release\level_set_solver.obj
 D:\SOLO-11\31-aircraft-anti-icing\src\solver\anti_icing_solver.cpp;D:\SOLO-11\31-aircraft-anti-icing\build\anti_icing_core.dir\Release\anti_icing_solver.obj

@@ -9,7 +9,8 @@ namespace anti_icing {
 AntiIcingSolver::AntiIcingSolver(const AntiIcingSystemConfig& config)
     : config_(config), currentTime_(0.0), currentDt_(0.0),
       currentStep_(0), totalSubSteps_(0),
-      dtHistoryPtr_(0), savedTime_(0.0) {
+      dtHistoryPtr_(0), savedTime_(0.0),
+      levelSetSolver_(nullptr) {
     diag_ = {};
     for (auto& d : dtHistory_) d = 0.0;
 }
@@ -18,8 +19,9 @@ void AntiIcingSolver::initialize() {
     parallel::setNumThreads(config_.solverConfig.numThreads);
 
     std::cout << "========================================" << std::endl;
-    std::cout << "  Aircraft Anti-Icing Solver v2.0" << std::endl;
-    std::cout << "  Robust Adaptive Nonlinear Coupling" << std::endl;
+    std::cout << "  Aircraft Anti-Icing Solver v2.5" << std::endl;
+    std::cout << "  Robust Adaptive Coupling + Level-Set" << std::endl;
+    std::cout << "  Dynamic Ice Shape Evolution" << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << "Initializing pipe flow solver (FVM)..." << std::endl;
 
@@ -72,14 +74,39 @@ void AntiIcingSolver::initialize() {
     std::cout << "  Line search Newton: "
               << (config_.femConfig.enableLineSearch ? "ON" : "OFF") << std::endl;
 
+    if (config_.enableDynamicIceShape) {
+        std::cout << "Initializing Level-Set dynamic ice shape solver..." << std::endl;
+        levelSetSolver_ = levelset::createLevelSetSolver(
+            config_.levelSetConfig, config_.iceShapeConfig);
+        std::cout << "  Level-Set grid: " << config_.levelSetConfig.gridSizeX
+                  << " x " << config_.levelSetConfig.gridSizeY << std::endl;
+        std::cout << "  WENO order: " << config_.levelSetConfig.wenoOrder << std::endl;
+        std::cout << "  Reinit steps: " << config_.levelSetConfig.reinitializationSteps << std::endl;
+        std::cout << "  Update interval: every "
+                  << config_.iceShapeUpdateInterval << " macro steps" << std::endl;
+        std::cout << "  Remesh threshold: " << config_.iceRemeshThreshold << " m" << std::endl;
+        Index nPts = levelSetSolver_->numSurfacePoints();
+        baseConvectionFactors_ = VectorX::Ones(nPts);
+        savedIceThickness_.resize(nPts);
+        savedIceThickness_.setZero();
+    } else {
+        std::cout << "  Dynamic ice shape evolution: DISABLED" << std::endl;
+    }
+
     std::cout << "Solver initialization complete." << std::endl;
     std::cout << "  Base time step: " << config_.solverConfig.timeStep << " s" << std::endl;
     std::cout << "  Total time: " << config_.solverConfig.totalTime << " s" << std::endl;
     std::cout << "  Threads: " << config_.solverConfig.numThreads << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << std::endl;
-    std::cout << "Step |   time   |  sub   |     dt     | T_max/K  | T_min/K  | CoupRes | Relax  | Mach  | Status" << std::endl;
-    std::cout << "-----+----------+--------+------------+----------+----------+---------+--------+-------+-------" << std::endl;
+
+    if (config_.enableDynamicIceShape) {
+        std::cout << "Step |   time   |  sub   |     dt     | T_max/K  | T_min/K  | CoupRes | Relax  | Mach  | IceTh/m | LE/m   | h_mod | Status" << std::endl;
+        std::cout << "-----+----------+--------+------------+----------+----------+---------+--------+-------+---------+--------+-------+-------" << std::endl;
+    } else {
+        std::cout << "Step |   time   |  sub   |     dt     | T_max/K  | T_min/K  | CoupRes | Relax  | Mach  | Status" << std::endl;
+        std::cout << "-----+----------+--------+------------+----------+----------+---------+--------+-------+-------" << std::endl;
+    }
 
     savedPipeState_.resize(pipeSolver_->grid().nCells);
     savedSolidState_.resize(solidSolver_->numNodes());
@@ -129,13 +156,28 @@ Scalar AntiIcingSolver::getStabilityCriterion() {
         criterion *= 0.5;
     }
 
+    if (levelSetSolver_) {
+        Scalar iceTh = levelSetSolver_->maxIceThickness();
+        Scalar iceRate = 0.0;
+        if (config_.iceRemeshThreshold > 0) {
+            if (iceTh > 0.5 * config_.iceRemeshThreshold) criterion *= 0.5;
+            if (iceTh > 0.8 * config_.iceRemeshThreshold) criterion *= 0.3;
+        }
+
+        Scalar LE = levelSetSolver_->leadingEdgeRadius();
+        Scalar LE0 = config_.iceShapeConfig.leadingEdgeRadius;
+        if (std::abs(LE - LE0) / std::max(LE0, 1.0e-10) > 0.2) {
+            criterion *= 0.6;
+        }
+    }
+
     return clamp(criterion, 0.01, 1.0);
 }
 
 Scalar AntiIcingSolver::adaptiveTimeStep() {
     Scalar pipeDt = pipeSolver_->computeStableTimeStep();
-    Scalar baseDt = std::min(pipeDt, config_.solverConfig.timeStep);
-    baseDt = std::max(baseDt, 1.0e-12);
+    Scalar baseDt = clamp(pipeDt, 1.0e-20, config_.solverConfig.timeStep);
+    baseDt = clamp(baseDt, 1.0e-12, 1.0);
 
     Scalar stability = getStabilityCriterion();
     Scalar adaptiveDt = baseDt * stability;
@@ -144,15 +186,14 @@ Scalar AntiIcingSolver::adaptiveTimeStep() {
     Scalar maxIncrease = 1.2;
     Scalar maxDecrease = 0.3;
 
-    Scalar ratio = adaptiveDt / prevDt;
+    Scalar ratio = adaptiveDt / std::max(prevDt, 1.0e-20);
     if (ratio > maxIncrease) {
         adaptiveDt = prevDt * maxIncrease;
     } else if (ratio < maxDecrease) {
         adaptiveDt = prevDt * maxDecrease;
     }
 
-    adaptiveDt = std::max(adaptiveDt, 1.0e-14);
-    adaptiveDt = std::min(adaptiveDt, config_.solverConfig.timeStep);
+    adaptiveDt = clamp(adaptiveDt, 1.0e-14, config_.solverConfig.timeStep);
 
     dtHistory_[dtHistoryPtr_] = adaptiveDt;
     dtHistoryPtr_ = (dtHistoryPtr_ + 1) % 5;
@@ -225,6 +266,19 @@ void AntiIcingSolver::step() {
                     config_.couplingInterface.externalBoundaryId,
                     config_.convectionModel);
 
+                if (levelSetSolver_) {
+                    VectorX factors = levelSetSolver_->getBoundaryConvectionFactors(
+                        static_cast<Index>(externalBCs.size()));
+                    for (Index k = 0; k < static_cast<Index>(externalBCs.size()); ++k) {
+                        if (externalBCs[k].type == fem::FEMBoundaryCondition::Type::CONVECTION ||
+                            externalBCs[k].type == fem::FEMBoundaryCondition::Type::ICE_LATENT_HEAT) {
+                            Scalar f = (k < factors.size()) ? factors(k) : 1.0;
+                            f = clamp(f, 0.1, 10.0);
+                            externalBCs[k].convectiveCoeff *= f;
+                        }
+                    }
+                }
+
                 auto internalBCs = bc::buildInternalBoundaryConditions(
                     solidGrid_,
                     coupler_->interface().pipeWallTemp,
@@ -273,10 +327,35 @@ void AntiIcingSolver::step() {
     diag_.stepStatus = validateSolution() ? 1.0 : 0.0;
 
     currentStep_++;
+
+    if (levelSetSolver_ && (currentStep_ % config_.iceShapeUpdateInterval == 0 || currentStep_ == 1)) {
+        try {
+            auto accretion = collectAccretionData();
+            Index nSurfPts = levelSetSolver_->numSurfacePoints();
+            if (accretion.iceGrowthRate.size() > 0) {
+                levelSetSolver_->updateIceShape(targetDt, accretion);
+            }
+
+            if (levelSetSolver_->needsRemeshing() ||
+                levelSetSolver_->hasExceededThreshold(config_.iceRemeshThreshold)) {
+                updateConvectionCoefficientsFromShape();
+            }
+        } catch (...) {
+        }
+    }
+
     computeDiagnostics();
 
-    if (currentStep_ % 20 == 0 || currentTime_ >= config_.solverConfig.totalTime ||
-        diag_.subSteps > 3 || diag_.backtrackCount > 0) {
+    bool shouldOutput = (currentStep_ % 20 == 0) ||
+                        (currentTime_ >= config_.solverConfig.totalTime) ||
+                        (diag_.subSteps > 3) ||
+                        (diag_.backtrackCount > 0);
+
+    if (config_.enableDynamicIceShape) {
+        shouldOutput = shouldOutput || (currentStep_ % config_.iceShapeUpdateInterval == 0);
+    }
+
+    if (shouldOutput) {
         outputResults(currentStep_, currentTime_);
     }
 }
@@ -334,6 +413,34 @@ void AntiIcingSolver::computeDiagnostics() {
     diag_.couplingRelaxation = coupler_->currentRelaxation();
     diag_.energyImbalance = coupler_->computeEnergyImbalance();
     diag_.wallClockTime = parallel::wallTime();
+
+    diag_.maxIceThickness = 0.0;
+    diag_.totalIceVolume = 0.0;
+    diag_.leadingEdgeRadius = config_.iceShapeConfig.leadingEdgeRadius;
+    diag_.convectionModifier = 1.0;
+    diag_.icedAreaFraction = 0.0;
+    diag_.surfacePointCount = 0;
+
+    if (levelSetSolver_) {
+        diag_.maxIceThickness = levelSetSolver_->maxIceThickness();
+        diag_.totalIceVolume = levelSetSolver_->totalIceVolume();
+        diag_.leadingEdgeRadius = levelSetSolver_->leadingEdgeRadius();
+        diag_.convectionModifier = levelSetSolver_->computeConvectiveCoeffModifier();
+        diag_.surfacePointCount = levelSetSolver_->numSurfacePoints();
+
+        Scalar iced = 0.0;
+        Index n = levelSetSolver_->numSurfacePoints();
+        Scalar r0 = config_.iceShapeConfig.leadingEdgeRadius;
+        Scalar cx = config_.levelSetConfig.domainWidth * 0.35;
+        Scalar cy = config_.levelSetConfig.domainHeight * 0.5;
+        for (Index k = 0; k < n; ++k) {
+            Vector2 p = levelSetSolver_->getSurfacePoint(k);
+            Scalar dist = (p - Vector2(cx, cy)).norm();
+            Scalar thickness = std::max(0.0, dist - r0);
+            if (thickness > 1.0e-5) iced += 1.0;
+        }
+        diag_.icedAreaFraction = n > 0 ? iced / static_cast<Scalar>(n) : 0.0;
+    }
 }
 
 void AntiIcingSolver::outputResults(Index step, Scalar time) {
@@ -354,8 +461,139 @@ void AntiIcingSolver::outputResults(Index step, Scalar time) {
               << std::setw(7) << diag_.couplingResidual << " | "
               << std::fixed << std::setprecision(2)
               << std::setw(6) << diag_.couplingRelaxation << " | "
-              << std::setw(5) << std::setprecision(3) << diag_.maxPipeMach << " | "
-              << statusStr << std::endl;
+              << std::setw(5) << std::setprecision(3) << diag_.maxPipeMach << " | ";
+
+    if (config_.enableDynamicIceShape && levelSetSolver_) {
+        std::cout << std::scientific << std::setprecision(2)
+                  << std::setw(7) << diag_.maxIceThickness << " | "
+                  << std::scientific << std::setprecision(2)
+                  << std::setw(6) << diag_.leadingEdgeRadius << " | "
+                  << std::fixed << std::setprecision(2)
+                  << std::setw(5) << diag_.convectionModifier << " | ";
+    }
+
+    std::cout << statusStr << std::endl;
+}
+
+levelset::IceAccretionData AntiIcingSolver::collectAccretionData() const {
+    levelset::IceAccretionData data;
+
+    Index nSurf = levelSetSolver_ ? levelSetSolver_->numSurfacePoints() : 0;
+
+    data.iceGrowthRate.resize(nSurf);
+    data.collectionEfficiency.resize(nSurf);
+    data.surfaceHeatFlux.resize(nSurf);
+    data.surfaceTemperature.resize(nSurf);
+    data.surfaceCurvature.resize(nSurf);
+    data.iceGrowthRate.setZero();
+    data.collectionEfficiency.setZero();
+    data.surfaceHeatFlux.setZero();
+    data.surfaceTemperature.setZero();
+    data.surfaceCurvature.setZero();
+
+    if (!levelSetSolver_) return data;
+
+    Index boundaryId = config_.couplingInterface.externalBoundaryId;
+    VectorX boundaryFlux = solidSolver_->getBoundaryHeatFlux(boundaryId);
+    VectorX boundaryTemp = solidSolver_->getBoundaryTemperature(boundaryId);
+
+    Scalar LWC = config_.flightCondition.LWC;
+    Scalar Vinf = config_.flightCondition.V_inf;
+    Scalar Tfreeze = config_.femConfig.freezingPointTemp;
+
+    Scalar rhoIce = 917.0;
+    Scalar Lf = 334000.0;
+
+    Scalar stagnationIdx = static_cast<Scalar>(levelSetSolver_->findStagnationPoint());
+
+    for (Index k = 0; k < nSurf; ++k) {
+        Scalar distFromStag = static_cast<Scalar>(k) - stagnationIdx;
+        Scalar distAbs = std::abs(distFromStag) * 2.0 / std::max(Index(1), nSurf);
+        Scalar beta = config_.iceShapeConfig.collectionEfficiencyPeak *
+                      std::exp(-distAbs * distAbs * 3.0);
+        beta = clamp(beta, 0.0, 1.0);
+        data.collectionEfficiency(k) = beta;
+
+        Scalar tempK = 270.0;
+        if (boundaryTemp.size() > 0) {
+            Scalar r = static_cast<Scalar>(k) / std::max(Index(1), nSurf - 1);
+            Index idx = static_cast<Index>(clamp(r * static_cast<Scalar>(boundaryTemp.size() - 1),
+                                                  0.0, static_cast<Scalar>(boundaryTemp.size() - 1)));
+            tempK = boundaryTemp(idx);
+        }
+        data.surfaceTemperature(k) = tempK;
+
+        Scalar q_wall = 0.0;
+        if (boundaryFlux.size() > 0) {
+            Scalar r = static_cast<Scalar>(k) / std::max(Index(1), nSurf - 1);
+            Index idx = static_cast<Index>(clamp(r * static_cast<Scalar>(boundaryFlux.size() - 1),
+                                                  0.0, static_cast<Scalar>(boundaryFlux.size() - 1)));
+            q_wall = boundaryFlux(idx);
+        }
+        data.surfaceHeatFlux(k) = q_wall;
+
+        Scalar kappa = levelSetSolver_->getSurfaceCurvature(k);
+        data.surfaceCurvature(k) = kappa;
+
+        Scalar LWC_kg = LWC * 1.0e-3;
+        Scalar waterMassFlux = LWC_kg * Vinf * beta;
+
+        Scalar deltaT_sub = std::max(0.0, Tfreeze - tempK);
+        Scalar q_sens = 4217.0 * waterMassFlux * deltaT_sub;
+
+        Scalar q_available = std::max(0.0, waterMassFlux * Lf - q_sens + q_wall * 0.1);
+
+        Scalar dt_eff = config_.solverConfig.timeStep *
+                        static_cast<Scalar>(config_.iceShapeUpdateInterval);
+        Scalar growthRate = 0.0;
+
+        if (tempK < Tfreeze - 0.1 && q_available > 0) {
+            growthRate = q_available / (rhoIce * Lf + 1.0e-10);
+            growthRate = clamp(growthRate, 0.0, 5.0e-3 / std::max(1.0e-12, dt_eff));
+        }
+
+        if (isNaN(growthRate)) growthRate = 0.0;
+        data.iceGrowthRate(k) = growthRate;
+    }
+
+    Scalar totalRate = 0.0;
+    for (Index k = 0; k < nSurf; ++k) totalRate += data.iceGrowthRate(k);
+    data.totalIceVolume = totalRate * 0.01 * 0.02;
+
+    Scalar maxThick = 0.0;
+    Scalar icedFrac = 0.0;
+    Scalar r0 = config_.iceShapeConfig.leadingEdgeRadius;
+    Scalar cx = config_.levelSetConfig.domainWidth * 0.35;
+    Scalar cy = config_.levelSetConfig.domainHeight * 0.5;
+    for (Index k = 0; k < nSurf; ++k) {
+        Vector2 p = levelSetSolver_->getSurfacePoint(k);
+        Scalar dist = (p - Vector2(cx, cy)).norm();
+        Scalar thickness = std::max(0.0, dist - r0);
+        if (thickness > maxThick) maxThick = thickness;
+        if (thickness > 1.0e-5) icedFrac += 1.0;
+    }
+    data.maxIceThickness = maxThick;
+    data.icedAreaFraction = nSurf > 0 ? icedFrac / static_cast<Scalar>(nSurf) : 0.0;
+
+    return data;
+}
+
+void AntiIcingSolver::updateIceShapeDynamics(Scalar dt) {
+    if (!levelSetSolver_) return;
+    auto accretion = collectAccretionData();
+    levelSetSolver_->updateIceShape(dt, accretion);
+}
+
+void AntiIcingSolver::updateConvectionCoefficientsFromShape() {
+    if (!levelSetSolver_) return;
+
+    Scalar newR = levelSetSolver_->leadingEdgeRadius();
+    Scalar r0 = config_.iceShapeConfig.leadingEdgeRadius;
+    Scalar rFactor = newR / std::max(r0, 1.0e-10);
+    rFactor = clamp(rFactor, 0.5, 3.0);
+
+    config_.convectionModel.characteristicLength = rFactor * r0 * 2.0;
+    config_.convectionModel.referenceRe *= std::sqrt(rFactor);
 }
 
 AntiIcingSystemConfig createDefaultConfig() {
@@ -434,6 +672,13 @@ AntiIcingSystemConfig createDefaultConfig() {
     config.couplingInterface.externalBoundaryId = 5;
     config.couplingInterface.internalConvCoeff = 100.0;
     config.couplingInterface.pipeDiameter = config.pipeConfig.diameter;
+
+    config.levelSetConfig = levelset::createDefaultLevelSetConfig();
+    config.iceShapeConfig = levelset::createDefaultIceShapeConfig();
+
+    config.enableDynamicIceShape = false;
+    config.iceShapeUpdateInterval = 10;
+    config.iceRemeshThreshold = 5.0e-3;
 
     config.solverConfig.timeStep = 1.0e-6;
     config.solverConfig.totalTime = 0.002;

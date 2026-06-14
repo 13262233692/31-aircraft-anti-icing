@@ -11,7 +11,7 @@ BuildDirectory: D:/SOLO-11/31-aircraft-anti-icing/build/_deps/eigen3-build
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: ZhuanZ
+Site: zhuanz
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: unknownwin-19.44.35227.0-sse2-64bit

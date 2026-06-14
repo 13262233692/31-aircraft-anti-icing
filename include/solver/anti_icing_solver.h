@@ -5,6 +5,7 @@
 #include "fem/heat_conduction_solver.h"
 #include "bc/boundary_conditions.h"
 #include "coupling/staggered_coupler.h"
+#include "levelset/level_set_solver.h"
 #include <memory>
 #include <functional>
 #include <string>
@@ -19,6 +20,13 @@ struct AntiIcingSystemConfig {
     bc::ConvectionModel convectionModel;
     coupling::CouplingConfig couplingConfig;
     coupling::CouplingInterface couplingInterface;
+
+    levelset::LevelSetConfig levelSetConfig;
+    levelset::IceShapeConfig iceShapeConfig;
+
+    bool enableDynamicIceShape;
+    Index iceShapeUpdateInterval;
+    Scalar iceRemeshThreshold;
 
     SolverConfig solverConfig;
 };
@@ -41,6 +49,13 @@ struct SolverDiagnostics {
     Scalar couplingRelaxation;
     Index backtrackCount;
     Scalar stepStatus;
+
+    Scalar maxIceThickness;
+    Scalar totalIceVolume;
+    Scalar leadingEdgeRadius;
+    Scalar convectionModifier;
+    Scalar icedAreaFraction;
+    Index surfacePointCount;
 };
 
 class AntiIcingSolver {
@@ -58,6 +73,8 @@ public:
     const fvm::PipeFlowSolver& pipeSolver() const { return *pipeSolver_; }
     const fem::HeatConductionSolver& solidSolver() const { return *solidSolver_; }
     const coupling::StaggeredCoupler& coupler() const { return *coupler_; }
+    const levelset::LevelSetSolver& levelSetSolver() const { return *levelSetSolver_; }
+    bool hasLevelSet() const { return levelSetSolver_ != nullptr; }
 
     using OutputCallback = std::function<void(Index, Scalar, const SolverDiagnostics&)>;
     void setOutputCallback(OutputCallback cb) { outputCallback_ = cb; }
@@ -74,10 +91,15 @@ private:
     void saveState();
     Scalar getStabilityCriterion();
 
+    void updateIceShapeDynamics(Scalar dt);
+    void updateConvectionCoefficientsFromShape();
+    levelset::IceAccretionData collectAccretionData() const;
+
     AntiIcingSystemConfig config_;
     std::shared_ptr<fvm::PipeFlowSolver> pipeSolver_;
     std::shared_ptr<fem::HeatConductionSolver> solidSolver_;
     std::shared_ptr<coupling::StaggeredCoupler> coupler_;
+    std::shared_ptr<levelset::LevelSetSolver> levelSetSolver_;
     std::shared_ptr<Grid3D> solidGrid_;
     std::vector<MaterialProperties> materials_;
     SolverDiagnostics diag_;
@@ -95,6 +117,9 @@ private:
     fvm::PipeFlowState savedPipeState_;
     fem::FEMState savedSolidState_;
     Scalar savedTime_;
+
+    VectorX savedIceThickness_;
+    VectorX baseConvectionFactors_;
 };
 
 std::shared_ptr<AntiIcingSolver> createAntiIcingSolver(const AntiIcingSystemConfig& config);

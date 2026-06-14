@@ -16,6 +16,9 @@
     <ClCompile Include="D:\SOLO-11\31-aircraft-anti-icing\src\fvm\pipe_flow_solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\SOLO-11\31-aircraft-anti-icing\src\levelset\level_set_solver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\SOLO-11\31-aircraft-anti-icing\src\solver\anti_icing_solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -3,7 +3,7 @@ set(CTEST_SOURCE_DIRECTORY  "D:/SOLO-11/31-aircraft-anti-icing")
 set(CTEST_BINARY_DIRECTORY  "D:/SOLO-11/31-aircraft-anti-icing/build")
 set(CTEST_CMAKE_GENERATOR   "Visual Studio 17 2022")
 set(CTEST_BUILD_NAME        "unknownwin-19.44.35227.0-sse2-64bit")
-set(CTEST_SITE              "ZhuanZ")
+set(CTEST_SITE              "zhuanz")
 
 set(MODEL Experimental)
 if(${CTEST_SCRIPT_ARG} MATCHES Nightly)
